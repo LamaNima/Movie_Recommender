@@ -37,8 +37,29 @@ def recommend(movie_name):
         recommendation_posters.append(fetch_poster(movie_id))
 
     return recommendations,recommendation_posters
-movies_dict = pickle.load(open('movies_dict.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+
+import requests
+import pickle
+
+def download_pickle_from_drive(url, filename):
+    response = requests.get(url)
+    with open(filename, 'wb') as f:
+        f.write(response.content)
+    print(f"{filename} downloaded successfully!")
+
+
+movies_url = 'https://drive.google.com/uc?export=download&id=1E6laZy9WNY3PgFsPJ3ItkkiiZ6j-JyJq'
+similarity_url='https://drive.google.com/uc?export=download&id=1lAs1WmkI5UhtMTAZvE5UFLGEw3ZK2wSF'
+
+download_pickle_from_drive(movies_url, "movies_dict.pkl")
+download_pickle_from_drive(similarity_url, "similarity.pkl")
+
+with open("movies_dict.pkl", "rb") as f:
+    movies_dict = pickle.load(f)
+
+with open("similarity.pkl", "rb") as f:
+    similarity = pickle.load(f)
+    
 movies = pd.DataFrame(movies_dict)
 st.title('Movie Recommender')
 
