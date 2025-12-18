@@ -4,6 +4,7 @@ import pickle
 import pandas as pd
 import requests
 from dotenv import load_dotenv
+import gdown
 
 load_dotenv()
 api_key = os.getenv('API_KEY')
@@ -38,26 +39,27 @@ def recommend(movie_name):
 
     return recommendations,recommendation_posters
 
-def download_pickle_from_drive(url, filename):
-    response = requests.get(url)
-    with open(filename, 'wb') as f:
-        f.write(response.content)
-    print(f"{filename} downloaded successfully!")
 
+import streamlit as st
 
-movies_url = 'https://drive.google.com/uc?export=download&id=1E6laZy9WNY3PgFsPJ3ItkkiiZ6j-JyJq'
-similarity_url='https://drive.google.com/uc?export=download&id=1lAs1WmkI5UhtMTAZvE5UFLGEw3ZK2wSF'
+movies_file_id = '1E6laZy9WNY3PgFsPJ3ItkkiiZ6j-JyJq'
+similarity_file_id = '1lAs1WmkI5UhtMTAZvE5UFLGEw3ZK2wSF'
+@st.cache_data
+def load_pickles():
+    if not os.path.exists("movies_dict.pkl"):
+        gdown.download(f"https://drive.google.com/uc?id={movies_file_id}", "movies_dict.pkl", quiet=False)
+    if not os.path.exists("similarity.pkl"):
+        gdown.download(f"https://drive.google.com/uc?id={similarity_file_id}", "similarity.pkl", quiet=False)
 
-download_pickle_from_drive(movies_url, "movies_dict.pkl")
-download_pickle_from_drive(similarity_url, "similarity.pkl")
+    with open("movies_dict.pkl", "rb") as f:
+        movies_dict = pickle.load(f)
+    with open("similarity.pkl", "rb") as f:
+        similarity = pickle.load(f)
+    return movies_dict, similarity
 
-with open("movies_dict.pkl", "rb") as f:
-    movies_dict = pickle.load(f)
-
-with open("similarity.pkl", "rb") as f:
-    similarity = pickle.load(f)
-    
+movies_dict, similarity = load_pickles()
 movies = pd.DataFrame(movies_dict)
+
 st.title('Movie Recommender')
 
 
