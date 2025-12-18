@@ -38,9 +38,6 @@ def recommend(movie_name):
 
     return recommendations,recommendation_posters
 
-import requests
-import pickle
-
 def download_pickle_from_drive(url, filename):
     response = requests.get(url)
     with open(filename, 'wb') as f:
