@@ -1,26 +1,85 @@
-# Overview
-This project is a content-based movie recommender system that suggests similar movies based on the features of a given movie. The system uses the TMDB 5000 Movies dataset to analyze movie attributes such as genres, keywords, cast, crew, and overview to compute similarities between movies. The recommendations are generated using cosine similarity, which measures the angle between feature vectors to determine how similar two movies are.
+# 🎬 Movie Recommendation System (Content-Based)
 
-# Features
-Content-Based Filtering: Recommends movies based on the similarity of their content (genres, keywords, cast, crew, and overview).
+## 📌 Overview
+This project is a **content-based movie recommender system** that suggests movies similar to a given title by analyzing intrinsic movie features.  
+Using the **TMDB 5000 Movies Dataset**, the system evaluates attributes such as **genres, keywords, cast, crew, and movie overviews** to compute similarity scores.
 
-Data Preprocessing: Cleans and transforms raw data into a usable format for analysis.
+The recommendation engine uses **cosine similarity** to measure how closely related movies are based on their feature vectors.  
+Unlike collaborative filtering, this system does **not rely on user ratings**, making it effective even without historical user interaction data.
 
-Natural Language Processing (NLP): Uses stemming to normalize words and CountVectorizer to convert text data into numerical vectors.
+---
 
-Cosine Similarity: Computes the similarity between movies using the cosine of the angle between their feature vectors.
+## 🌐 Live Demo
 
-User-Friendly Interface: Provides a simple function to input a movie title and receive recommendations.
+🚀 **The project is deployed and accessible here:**  
+👉 **https://nima-movie-recommender.streamlit.app/**
 
-# Dataset
-The dataset used in this project is the TMDB 5000 Movies Dataset imported from kaggle, which includes:
-Movies Metadata and
-Credits Data
+Users can:
+- Enter a movie title
+- Instantly receive content-based movie recommendations
+- Interact with a clean and intuitive web interface built using **Streamlit**
 
-# Dependencies
-To run this project, you will need the following Python libraries:
-- numpy
-- pandas
-- ast
-- nltk (with PorterStemmer)
-- scikit-learn (for CountVectorizer and cosine_similarity)
+---
+
+## ✨ Features
+
+- **Data Preprocessing**  
+  Cleans and transforms raw movie metadata into a structured format for analysis.
+  
+- **Content-Based Filtering**  
+  Recommends movies based on similarity in genres, keywords, cast, crew, and storyline.
+
+- **Natural Language Processing (NLP)**  
+  - Text normalization using stemming  
+  - Feature extraction using **CountVectorizer**  
+  - Combines multiple text attributes into a unified representation
+
+- **Cosine Similarity**  
+  Calculates similarity between movies using vector space modeling.
+
+- **Interactive Web Application**  
+  Deployed using **Streamlit**, allowing users to explore recommendations in real time.
+
+---
+
+## 📊 Dataset
+
+This project uses the **TMDB 5000 Movies Dataset** sourced from **Kaggle**, which includes:
+
+- **Movies Metadata**  
+  (genres, keywords, overview, etc.)
+
+- **Credits Data**  
+  (cast and crew information)
+
+These datasets are merged and processed to build a comprehensive feature set for the recommendation system.
+
+---
+
+## 🛠️ Technologies & Dependencies
+
+The following Python libraries are used:
+
+- `numpy`
+- `pandas`
+- `ast`
+- `nltk`  
+  - PorterStemmer
+- `scikit-learn`  
+  - CountVectorizer  
+  - cosine_similarity
+- `streamlit` (for deployment)
+
+---
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+- Building a **content-based recommendation system**
+- Applying **NLP techniques** to real-world datasets
+- Feature engineering from unstructured text data
+- Measuring similarity using **cosine similarity**
+- Deploying machine learning applications using **Streamlit**
+
+---
+
